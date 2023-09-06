@@ -1,0 +1,45 @@
+
+/* Estilo para el título de la tarjeta */
+ion-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+
+
+.contenidoTarjeta {
+    background-color:rgb(219, 232, 235);
+    color: yellow;
+    border-radius: 10px;
+    margin: 10px;
+  }
+
+  //estilo para item, label e input
+  
+  ion-item {
+    --highlight-color-focused: #007bff;
+    margin-bottom: 10px;
+  }
+
+  ion-label {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  ion-input {
+
+    padding: 10px;
+    color: black;
+    font-size: 14px;
+  }
+  
+
+  /* Estilo para reducir el tamaño del footer */
+ion-footer {
+    height: 50px; 
+  }
+  
+  

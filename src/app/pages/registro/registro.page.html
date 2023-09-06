@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"
+      text="Regresar"
+      color="primary"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">registro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card class="contenidoTarjeta">
+    <ion-card-header>
+      <ion-card-title>Ingrese sus Datos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <form #formulario="ngForm" (keyup.enter)="Enviar()">
+        <ion-list>
+
+            <ion-item>
+              <ion-label position="floating">Nombre: </ion-label>
+              <ion-input type="text" placeholder="Ingrese su Nombre..." name="nombre" 
+                      [(ngModel)]="usuario.nombre"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Rut: </ion-label>
+              <ion-input type="text" placeholder="Ingrese su Rut..." name="rut" 
+                      [(ngModel)]="usuario.rut"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Correo: </ion-label>
+              <ion-input type="email" placeholder="Ingrese su Correo..." name="correo" 
+                      [(ngModel)]="usuario.correo"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Carrera: </ion-label>
+              <ion-input type="text" placeholder="Ingrese su Carrera..." name="carrera"
+                      [(ngModel)]="usuario.carrera"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Contraseña: </ion-label>
+              <ion-input type="password" placeholder="Cree su Contraseña..."name="password" 
+                      [(ngModel)]="usuario.password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Confirmar Contraseña: </ion-label>
+              <ion-input type="password" placeholder="Confirme su Contraseña..."name="confirmarPassword" 
+                      [(ngModel)]="usuario.confirmarPassword"></ion-input>
+            </ion-item>
+        </ion-list>
+        <ion-button (click)="Enviar()" expand="block" fill="solid" color="primary" shape="round">
+          Registrar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
