@@ -1,14 +1,16 @@
 .encabezado{
-    background-color: beige ;
+    background-color:rgb(219, 232, 235);
+    color: yellow;
 }
 
 .contenido{
-    background-color: beige ;
+    background-color:rgb(219, 232, 235);
+    color: yellow;
 }
 
 .texto{
     text-align: justify;
-    color: blue;
+    color: #4285F4;
 }
 ion-card-header.ios {
     display: flex;
@@ -16,9 +18,13 @@ ion-card-header.ios {
   }
 
 .imagen{
-    background-color:blue;
+    background-color:#4285F4;
+    color: yellow;
+    border-radius: 10px;
 }
-ion-card-header.ios {
-    display: flex;
-    flex-flow: column-reverse;
-  }
+
+.titulo{
+    color:#3880FF;
+    font-weight: bold;
+}
+

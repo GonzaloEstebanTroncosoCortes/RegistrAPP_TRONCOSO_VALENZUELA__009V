@@ -7,17 +7,17 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>Informacion</ion-title>
+    <ion-title class="titulo">Informacion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Informacion</ion-title>
+      <ion-title size="large" style="color:#3880FF;font-weight: bold;">Informacion</ion-title>
     </ion-toolbar>
   </ion-header>
-
+<!--primera tarjeta-->
   <ion-card>
     <img src="assets/11_profesor_texto.png" class="ion-padding imagen">
     <ion-card-header class="encabezado">
@@ -32,9 +32,22 @@
   </ion-card>
   <!--segunda tarjeta-->
   <ion-card>
+    <img src="assets/01mokat.gif" class="ion-padding imagen">
+    <ion-card-header class="encabezado">
+      <ion-card-subtitle style="color: blue; font-weight: bold;">¡Facil y intuitiva!</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content class="contenido">
+      <p class="texto">
+        Aquí podrás ver cómo puedes interactuar con la aplicación. Solo tienes que ir mirando las diferentes opciones y funciones disponibles para sacar el máximo provecho de ella.
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <!--tercera tarjeta-->
+  <ion-card>
     <img src="assets/06_qr_clase.jpg" class="ion-padding imagen">
     <ion-card-header class="encabezado">
-      <ion-card-subtitle style="color: blue; font-weight: bold;">!Toma tu telefono y Listo.</ion-card-subtitle>
+      <ion-card-subtitle style="color: blue; font-weight: bold;">¡Toma tu telefono y Listo!</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content class="contenido">
@@ -47,7 +60,7 @@
 
     </ion-card-content>
   </ion-card>
-  <!--segunga tarjeta-->
+  
 
 
 </ion-content>

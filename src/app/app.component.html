@@ -3,7 +3,12 @@
   <ion-menu class="menu" contentId="main" menuId="primero" side="start" swipe-gesture="false">
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="end">
+          <img src="assets/14_logo.png" class="logo">
+        </ion-buttons>
         <ion-title class="tituloPrincipal">RegistrAPP</ion-title>
+        
+
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -11,19 +16,19 @@
 
       <ion-menu-toggle *ngFor="let c of componentes">
 
-        <ion-item [routerLink]="c.redirecTo" detail="true">
+        <ion-item class="adentro" [routerLink]="c.redirecTo" detail="true">
 
           <ion-icon slot="start" [name]="c.icon" color="primary"></ion-icon>
           {{c.name}}
           
         </ion-item>
 
-
-        
       </ion-menu-toggle>
 
     </ion-content>
+    
   </ion-menu>
+  
 
   <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

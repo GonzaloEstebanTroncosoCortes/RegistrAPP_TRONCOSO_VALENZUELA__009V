@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   async MostrarMensaje() {
     const alert = await this.alertController.create({
       header: 'Gracias!',
-      message: 'Bienvenido, Usuario LOGEADO!',
+      message: 'Bienvenido, Uste esta Logeado!',
       buttons: ['OK'],
     });
     await alert.present();
