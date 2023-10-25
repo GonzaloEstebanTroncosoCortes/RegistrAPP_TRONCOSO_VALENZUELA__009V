@@ -34,6 +34,16 @@ export class AppComponent {
       name: 'Informacion',
       redirecTo: '/informacion',
       icon: 'information-circle'
+    },
+    {
+      name: 'Feriados',
+      redirecTo: '/feriados',
+      icon: 'calendar'
+    },
+    {
+      name: 'Salir',
+      redirecTo: '/salir',
+      icon: 'log-out'
     }
 
   ];

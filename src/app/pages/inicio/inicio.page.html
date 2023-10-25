@@ -16,7 +16,9 @@
       <ion-title style="color:#3880FF;font-weight: bold;" size="large">Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <div *ngIf="estaLogueado()" class="bienvenida-usuario">
+    ¡Hola, {{ obtenerNombreUsuario() }}!
+  </div>
   <ion-card>
     <img src="assets/12_logo.png">
     
@@ -26,11 +28,12 @@
     </ion-card-header>
 
     <ion-card-content class="contenido">
-      <ion-button routerLink="/login" expand="block" color="primary" shape="round" class="ion-padding">
+
+      <ion-button *ngIf="!estaLogueado()" routerLink="/login" expand="block" color="primary" shape="round" class="ion-padding">
         Login
       </ion-button>
     
-      <ion-button routerLink="/registro" expand="block" color="primary" shape="round" class="ion-padding">
+      <ion-button *ngIf="!estaLogueado()" routerLink="/registro" expand="block" color="primary" shape="round" class="ion-padding">
         Registro
       </ion-button>
 

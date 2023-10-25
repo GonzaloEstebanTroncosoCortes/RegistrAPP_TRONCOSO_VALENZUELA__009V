@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"
-      text="Regresar"
-      color="primary"></ion-back-button>
-    </ion-buttons>
 
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="icon-only" name="menu-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
     <ion-title class="titulo">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -23,46 +24,234 @@
     </ion-card-header>
     <ion-card-content>
       
-      <form #formulario="ngForm" (keyup.enter)="Enviar()">
+      <form [formGroup]="registrarForm">
         <ion-list>
-
+<!---------------------------------------registrar--------------------------------------------------------------------------------->
             <ion-item>
-              <ion-label position="floating">Nombre: </ion-label>
-              <ion-input type="text" placeholder="Ingrese su Nombre..." name="nombre" 
-                      [(ngModel)]="usuario.nombre"></ion-input>
+              <ion-label position="floating">Usuario: </ion-label>
+              <ion-input type="text" placeholder="Ingrese su nickname.."  formControlName="username" [(ngModel)]="newDocente.username" name="txtUsername"></ion-input>
+              
             </ion-item>
 
-            <ion-item>
-              <ion-label position="floating">Rut: </ion-label>
-              <ion-input type="text" placeholder="Ingrese su Rut..." name="rut" 
-                      [(ngModel)]="usuario.rut"></ion-input>
-            </ion-item>
+            <div *ngIf="registrarForm.get('username')?.invalid && (registrarForm.get('username')?.dirty || registrarForm.get('username')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('username')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('username')?.hasError('minlength')">
+                *Usuario mínimo de 8 caracteres
+             </div>
+            </div>
             
+<!-------------correo----------------------------------------------------------------------------------------------------------->
             <ion-item>
               <ion-label position="floating">Correo: </ion-label>
-              <ion-input type="email" placeholder="Ingrese su Correo..." name="correo" 
-                      [(ngModel)]="usuario.correo"></ion-input>
+              <ion-input type="email" placeholder="Ingrese su Correo..." formControlName="correo" [(ngModel)]="newDocente.correo"name="txtCorreo"   
+              ></ion-input>
             </ion-item>
-
+           <!-- Manejar mensajes de error para correo -->
+            <div *ngIf="registrarForm.get('correo')?.invalid && (registrarForm.get('correo')?.dirty || registrarForm.get('correo')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('correo')?.hasError('required')">
+                *Correo es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('correo')?.hasError('email')">
+                *Correo no válido
+             </div>
+            </div>
+          
+<!------------role------------------------------------------------------------------------------------------------------------>            
             <ion-item>
-              <ion-label position="floating">Carrera: </ion-label>
-              <ion-input type="text" placeholder="Ingrese su Carrera..." name="carrera"
-                      [(ngModel)]="usuario.carrera"></ion-input>
+              <ion-label position="floating">Rol: </ion-label>
+              <ion-input type="text"   placeholder="Ingrese su rol..." formControlName="role"   [(ngModel)]="newDocente.role" name="txtRole"
+                      ></ion-input>
             </ion-item>
+            <!-- Manejar mensajes de error para role -->
+            <div *ngIf="registrarForm.get('role')?.invalid && (registrarForm.get('role')?.dirty || registrarForm.get('role')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('role')?.hasError('required')">
+                *Rol es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('role')?.hasError('minlength')">
+                *Rol mínimo de 5 caracteres
+             </div>
+            </div>
+            
+<!------------------------------------------------------------------------------------------------------------------------>   
+            <ion-item>
+              <ion-label>IsActive:</ion-label>
+              <ion-checkbox  [(ngModel)]="newDocente.isactive" (ionChange)="checkValue($event)"></ion-checkbox>
+              <div class="mensaje-informativo">
+                Si Esta activo marque la casilla 
+              </div>
+            </ion-item>
+            
+<!----------asignatura1------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Asignatura 1: </ion-label>
+              <ion-input type="text"  placeholder="Ingrese Asignatura..." formControlName="asignatura1"  [(ngModel)]="newDocente.asignatura1" name="txtAsignatura1"
+              ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Asignatura -->
+            <div *ngIf="registrarForm.get('asignatura1')?.invalid && (registrarForm.get('asignatura1')?.dirty || registrarForm.get('asignatura1')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('asignatura1')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('asignatura1')?.hasError('minlength')">
+                *Usuario mínimo de 5 caracteres
+             </div>
+            </div>
+<!----------año 1------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Año de Asignatura 1: </ion-label>
+              <ion-input type="text"  placeholder="Ingrese Año..." formControlName="anno1"  [(ngModel)]="newDocente.anno1" name="txtAnno1"
+                      ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Año -->
+            <div *ngIf="registrarForm.get('anno1')?.invalid && (registrarForm.get('anno1')?.dirty || registrarForm.get('anno1')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('anno1')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('anno1')?.hasError('minlength')">
+                *Usuario mínimo de 4 caracteres
+             </div>
+            </div>
+<!----------semestre------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Semestre 1: </ion-label>
+              <ion-input type="text"  placeholder="Ingrese Semestre..." formControlName="semestre1" [(ngModel)]="newDocente.semestre1" name="txtSemestre1"
+                      ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Semestre -->
+            <div *ngIf="registrarForm.get('semestre1')?.invalid && (registrarForm.get('semestre1')?.dirty || registrarForm.get('semestre1')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('semestre1')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('semestre1')?.hasError('maxlength')">
+                *Usuario mínimo de 1 caracteres
+             </div>
+            </div>
+<!----------horas1------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Horas totales 1: </ion-label>
+              <ion-input type="number"  placeholder="Ingrese Horas totales..."  formControlName="horaTotal1" [(ngModel)]="newDocente.horaTotal1" name="horasTotales1"
+                      ></ion-input>
+            </ion-item>
+            <div *ngIf="registrarForm.get('horaTotal1')?.invalid && (registrarForm.get('horaTotal1')?.dirty || registrarForm.get('horaTotal1')?.touched)">
+
+              <!-- Mensaje cuando el campo es requerido -->
+              <div style="color:red" *ngIf="registrarForm.get('horaTotal1')?.hasError('required')">
+                *Este campo es requerido.
+              </div>
+            
+              <!-- Mensaje cuando el valor no está en el rango válido -->
+              <div style="color:red" *ngIf="registrarForm.get('horaTotal1')?.hasError('rangoInvalido')">
+                *Las horas totales deben estar entre 0 y 20.
+              </div>
+            
+            </div>
+<!-------------valida asignatura2---------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Asignatura 2: </ion-label>
+              <ion-input type="text"  placeholder="Ingrese Asignatura..." formControlName="asignatura2" [(ngModel)]="newDocente.asignatura2" name="txtAsignatura2"
+                      ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Asignatura -->
+            <div *ngIf="registrarForm.get('asignatura2')?.invalid && (registrarForm.get('asignatura2')?.dirty || registrarForm.get('asignatura2')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('asignatura2')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('asignatura2')?.hasError('minlength')">
+                *Usuario mínimo de 5 caracteres
+             </div>
+            </div>
+<!----------año 2------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Año de Asignatura 2: </ion-label>
+              <ion-input type="text"  placeholder="Ingrese Año..." formControlName="anno2" [(ngModel)]="newDocente.anno2" name="txtAnno2"
+                      ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Año -->
+            <div *ngIf="registrarForm.get('anno2')?.invalid && (registrarForm.get('anno2')?.dirty || registrarForm.get('anno2')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('anno2')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('anno2')?.hasError('minlength')">
+                *Usuario mínimo de 4 caracteres
+             </div>
+            </div>
+<!----------semestre2------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Semestre 2: </ion-label>
+              <ion-input type="number"  placeholder="Ingrese Semestre..." formControlName="semestre2" [(ngModel)]="newDocente.semestre2" name="txtSemestre2"
+                     ></ion-input>
+            </ion-item>
+            <!-- Manejar mensajes de error para Semestre -->
+            <div *ngIf="registrarForm.get('semestre2')?.invalid && (registrarForm.get('semestre2')?.dirty || registrarForm.get('semestre2')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('semestre2')?.hasError('required')">
+                *Usuario es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('semestre2')?.hasError('maxlength')">
+                *Usuario mínimo de 1 caracteres
+             </div>
+            </div>
+<!----------horas1------------------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Horas totales 2: </ion-label>
+              <ion-input type="number"  placeholder="Ingrese Horas totales..."  formControlName="horaTotal2" [(ngModel)]="newDocente.horaTotal2" name="horasTotales2"
+                      ></ion-input>
+            </ion-item> 
+
+            <div *ngIf="registrarForm.get('horaTotal2')?.invalid && (registrarForm.get('horaTotal2')?.dirty || registrarForm.get('horaTotal2')?.touched)">
+
+              <!-- Mensaje cuando el campo es requerido -->
+              <div style="color:red" *ngIf="registrarForm.get('horaTotal2')?.hasError('required')">
+                *Este campo es requerido.
+              </div>
+            
+              <!-- Mensaje cuando el valor no está en el rango válido -->
+              <div style="color:red" *ngIf="registrarForm.get('horaTotal2')?.hasError('rangoInvalido')">
+                *Las horas totales deben estar entre 0 y 20.
+              </div>
+            
+            </div>
+<!-----------contraseña------------------------------------------------------------------------------------------------>
 
             <ion-item>
               <ion-label position="floating">Contraseña: </ion-label>
-              <ion-input type="password" placeholder="Cree su Contraseña..."name="password" 
-                      [(ngModel)]="usuario.password"></ion-input>
+              <ion-input type="password"   placeholder="Cree su Contraseña..." formControlName="password" [(ngModel)]="newDocente.password" name="password"
+              ></ion-input>
             </ion-item>
-
+            <div *ngIf="registrarForm.get('password')?.invalid && (registrarForm.get('password')?.dirty || registrarForm.get('password')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('password')?.hasError('required')">
+                *Password es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('password')?.hasError('minlength')">
+                *Password mínimo de 8 caracteres
+             </div>
+            </div>
+<!------------confirmar contreseña----------------------------------------------------------------------------------------------->
             <ion-item>
               <ion-label position="floating">Confirmar Contraseña: </ion-label>
-              <ion-input type="password" placeholder="Confirme su Contraseña..."name="confirmarPassword" 
-                      [(ngModel)]="usuario.confirmarPassword"></ion-input>
+              <ion-input type="password" placeholder="Confirme su Contraseña..." formControlName="confirmarPassword" [(ngModel)]="newDocente.confirmarPassword" name="confirmarPassword"
+              ></ion-input>                   
             </ion-item>
+            <div *ngIf="registrarForm.get('confirmarPassword')?.invalid && (registrarForm.get('confirmarPassword')?.dirty || registrarForm.get('confirmarPassword')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('confirmarPassword')?.hasError('required')">
+                *Password es requerido
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('confirmarPassword')?.hasError('minlength')">
+                *Password mínimo de 8 caracteres
+             </div>
+             <div *ngIf="registrarForm.get('confirmarPassword')?.invalid && (registrarForm.get('confirmarPassword')?.dirty || registrarForm.get('confirmarPassword')?.touched)">
+              <div style="color:red" *ngIf="registrarForm.get('confirmarPassword')?.hasError('required')">
+                  *La confirmación de la contraseña es requerida.
+              </div>
+              <div style="color:red" *ngIf="registrarForm.get('confirmarPassword')?.hasError('MustMatch')">
+                  Las contraseñas no coinciden.
+              </div>
+          </div>
+            </div>
+<!-----------------METODO PARA CREAR DOCENTE------------------------------------------------------------------------------------------>            
         </ion-list>
-        <ion-button (click)="Enviar()" expand="block" fill="solid" color="primary" shape="round">
+        <ion-button (click)="CrearDocente()" [disabled]="!registrarForm.valid" expand="block" fill="solid" color="primary" shape="round">
           Registrar
         </ion-button>
       </form>

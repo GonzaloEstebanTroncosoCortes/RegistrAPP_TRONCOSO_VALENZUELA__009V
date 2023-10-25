@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon slot="icon-only" name="menu-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Salir</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" style="color:#3880FF;font-weight: bold;">Informacion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<!--primera tarjeta-->
+  <ion-card>
+
+    <ion-card-header class="encabezado">
+      <ion-card-subtitle style="color: blue; font-weight: bold;">Muchas Gracias por su visita</ion-card-subtitle>
+    </ion-card-header>
+    <ion-button (click)="onLogout()" expand="block" color="primary" shape="round">Cerrar sesión</ion-button>
+    <ion-card-content class="contenido">
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
